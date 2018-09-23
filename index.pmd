@@ -63,9 +63,36 @@ Assuming that dart are thrown with a uniform probability distribution function, 
 tri_area / circ_area
 ```
 
-2. A bag contains 9 discs, numbered from 1 t0 9. A disc is drawn from the bag, If the number is
-even, then a coin is tossed. If the number is odd, then a die is thrown. How many outcomes are
-possible?
+Problem 2
+=========
+
+> A bag contains 9 discs, numbered from 1 to 9. A disc is drawn from the bag, If the number is even, then a coin is tossed. If the number is odd, then a die is thrown. How many outcomes are possible?
+
+Let's just enumerate the outcomes:
+
+```python
+outcomes = set()
+
+for disc in range(1,10):
+  if disc % 2 == 0:
+    for coin in ['H','T']:
+      outcomes.add((disc,coin))
+  else:
+    for die in range(1,7):
+      outcomes.add((disc,die))
+
+outcomes
+```
+
+And count them:
+
+```python
+len(outcomes)
+```
+
+This makes sense as we have 5 possible die rolls or 4 coin tosses, which we could represent as:
+
+   6·5 + 4·2 = 38
 
 3. How many arrangements can be made of letters P, Q, R, S, T, taking two letters at a time in no letter can be repeated.
 
