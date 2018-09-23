@@ -187,6 +187,48 @@ Now we just count the outcomes.
 len(outcomes)
 ```
 
-6. How many bundles of 5 different books can be made from 8 Math books and 6 Physics books. If
+Problem 6
+=========
+
+> How many bundles of 5 different books can be made from 8 Math books and 6 Physics books. If
 the number of Math books must be always be greater than the number of the Physics book?
 
+Let's enumate all possible permutations:
+
+```python
+from itertools import permutations
+
+outcomes = list(permutations(list(enumerate('m'*8)) + list(enumerate('p'*6)), 5))
+len(outcomes)
+```
+
+Then filter:
+
+```python
+def more_math(books):
+  """
+  >>> more_math([(0,'m')])
+  True
+  >>> more_math([(0,'p')])
+  False
+  >>> more_math([(0,'p'),(0,'m'),(1,'m')])
+  True
+  >>> more_math([(0,'p'),(0,'m'),(1,'p')])
+  False
+  >>> more_math([(0,'p'),(0,'m'),(1,'p'),(1,'m')])
+  False
+  """
+
+  math = len([b for b in books if b[1] == 'm'])
+  physics = len([b for b in books if b[1] == 'p'])
+
+  return math > physics
+
+outcomes = [o for o in outcomes if more_math(o)]
+```
+
+Then count:
+
+```python
+len(outcomes)
+```
