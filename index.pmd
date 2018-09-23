@@ -147,9 +147,45 @@ Then count them:
 len(outcomes)
 ```
 
-5. There are 5 women and 4 men in a club. A team of 4 has to be chosen. How many different
-teams can be chosen if there must be either exactly one women or exactly two women on the
-team?
+Problem 5
+=========
+
+> There are 5 women and 4 men in a club. A team of 4 has to be chosen. How many different teams can be chosen if there must be either exactly one women or exactly two women on the team?
+
+Let's enumate all possible permutations:
+
+```python
+from itertools import permutations
+
+outcomes = list(permutations(list(enumerate('f'*5)) + list(enumerate('m'*4)), 4))
+len(outcomes)
+```
+
+Then filter:
+
+```python
+def num_female(team):
+  """
+  >>> num_female([(0,'f'),(1,'f'),(2,'f'),(0,'m')])
+  3
+  >>> num_female([(0,'f'),(1,'m'),(2,'f'),(0,'m')])
+  2
+  >>> num_female([(0,'m'),(1,'m'),(2,'f'),(0,'m')])
+  1
+  >>> num_female([(0,'m'),(1,'m'),(2,'m'),(4,'m')])
+  0
+  """
+
+  return len([o for o in team if o[1] == 'f'])
+
+outcomes = [o for o in outcomes if num_female(o) in [1,2]]
+```
+
+Now we just count the outcomes.
+
+```python
+len(outcomes)
+```
 
 6. How many bundles of 5 different books can be made from 8 Math books and 6 Physics books. If
 the number of Math books must be always be greater than the number of the Physics book?
