@@ -94,10 +94,58 @@ This makes sense as we have 5 possible die rolls or 4 coin tosses, which we coul
 
    6·5 + 4·2 = 38
 
-3. How many arrangements can be made of letters P, Q, R, S, T, taking two letters at a time in no letter can be repeated.
+Problem 3
+=========
 
-4. How many arrangements can be made from the letters V, W, X, Y, Z. Taking all the letters at a
+> How many arrangements can be made of letters P, Q, R, S, T, taking two letters at a time in no letter can be repeated.
+
+```python
+from itertools import permutations
+
+outcomes = list(permutations('PQRST', 2))
+outcomes
+```
+
+Then we just count them:
+
+```python
+len(outcomes)
+```
+
+This makes sense as this is a basic permutation so we can use:
+
+$n! \over (n-k)!$
+
+${5! \over 3!} = 20$
+
+Problem 4
+=========
+
+> How many arrangements can be made from the letters V, W, X, Y, Z. Taking all the letters at a
 time. If V must be the second and Z can never be last?
+
+We'll start with the complete list of permutations:
+
+```python
+from itertools import permutations
+
+outcomes = list(permutations('VWXYZ', 5))
+len(outcomes)
+```
+
+Then we can filter those that shouldn't be included:
+
+```python
+outcomes = [o for o in outcomes if o[1] == 'V']
+outcomes = [o for o in outcomes if o[-1] != 'Z']
+outcomes
+```
+
+Then count them:
+
+```python
+len(outcomes)
+```
 
 5. There are 5 women and 4 men in a club. A team of 4 has to be chosen. How many different
 teams can be chosen if there must be either exactly one women or exactly two women on the
