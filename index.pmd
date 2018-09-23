@@ -1,3 +1,81 @@
-% Title
-% Author
-% August 5th, 2018
+% CSC722 HW 5
+% Jon Craton
+
+Problem 1
+=========
+
+![](media/prob1.png)
+
+> The radius of the circle is 5. What is the probability that a dart hit the triangle? The triangle sides are equal (Equilateral).
+
+We need to calculate some areas.
+
+There's probably a fancy geometry formula for the triangle area, but let's just derive it. Let's break down the equalateral triangle into 6 right triangles:
+
+![](media/prob1-split.png)
+
+We know that the hypotenuse of each is our radius of 5. Because these are 30-60-90 triangles, the legs are:
+
+$r \over 2$
+
+and
+
+$r√3 \over 2$
+
+The area is:
+
+$A = {b·h \over 2}$
+
+$A = {{r \over 2}·{r√3 \over 2} \over 2}$
+
+$A = {r²√3 \over 8}$
+
+Now we can calculate the area:
+
+```python
+r = 5
+
+tri_area = (r**2)*(3**(1/2)) / 8
+tri_area
+```
+
+Our full triangle is made up of 6 of the smaller ones, so we need to multiply by 6:
+
+```python
+tri_area = 6*tri_area
+tri_area
+```
+
+The circle area is much easier:
+
+$A = πr²$
+
+```python
+import math
+
+circ_area = math.pi * 5**2
+circ_area
+```
+
+Assuming that dart are thrown with a uniform probability distribution function, our probability is simply the percentage of our area covered by the triange.
+
+```python
+tri_area / circ_area
+```
+
+2. A bag contains 9 discs, numbered from 1 t0 9. A disc is drawn from the bag, If the number is
+even, then a coin is tossed. If the number is odd, then a die is thrown. How many outcomes are
+possible?
+
+3. How many arrangements can be made of letters P, Q, R, S, T, taking two letters at a time in no letter can be repeated.
+
+4. How many arrangements can be made from the letters V, W, X, Y, Z. Taking all the letters at a
+time. If V must be the second and Z can never be last?
+
+5. There are 5 women and 4 men in a club. A team of 4 has to be chosen. How many different
+teams can be chosen if there must be either exactly one women or exactly two women on the
+team?
+
+6. How many bundles of 5 different books can be made from 8 Math books and 6 Physics books. If
+the number of Math books must be always be greater than the number of the Physics book?
+
