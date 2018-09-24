@@ -57,7 +57,7 @@ circ_area = math.pi * 5**2
 circ_area
 ```
 
-Assuming that dart are thrown with a uniform probability distribution function, our probability is simply the percentage of our area covered by the triange.
+Assuming that darts are thrown with a uniform probability distribution function, our probability is simply the percentage of our area covered by the triange.
 
 ```python
 tri_area / circ_area
