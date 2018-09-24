@@ -4,9 +4,9 @@
 Problem 1
 =========
 
-![](media/prob1.png)
-
 > The radius of the circle is 5. What is the probability that a dart hit the triangle? The triangle sides are equal (Equilateral).
+
+![](media/prob1.png)
 
 We need to calculate some areas.
 
@@ -62,6 +62,10 @@ Assuming that darts are thrown with a uniform probability distribution function,
 ```python
 tri_area / circ_area
 ```
+
+Solving symbolically, we can see that the radius doesn't matter as this is just a proportion.
+
+${{6r²√3 \over 8} \over πr²} = {3√3 \over 4π} = 0.4134...$
 
 Problem 2
 =========
