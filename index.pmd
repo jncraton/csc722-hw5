@@ -152,12 +152,12 @@ Problem 5
 
 > There are 5 women and 4 men in a club. A team of 4 has to be chosen. How many different teams can be chosen if there must be either exactly one women or exactly two women on the team?
 
-Let's enumate all possible permutations:
+Order of players on the team doesn't matter, so let's enumate all possible combinations:
 
 ```python
-from itertools import permutations
+from itertools import combinations
 
-outcomes = list(permutations(list(enumerate('f'*5)) + list(enumerate('m'*4)), 4))
+outcomes = list(combinations(list(enumerate('f'*5)) + list(enumerate('m'*4)), 4))
 len(outcomes)
 ```
 
@@ -193,12 +193,12 @@ Problem 6
 > How many bundles of 5 different books can be made from 8 Math books and 6 Physics books. If
 the number of Math books must be always be greater than the number of the Physics book?
 
-Let's enumate all possible permutations:
+I'm assuming that order of books in the bundle doesn't matter, so let's enumate all possible combinations:
 
 ```python
-from itertools import permutations
+from itertools import combinations
 
-outcomes = list(permutations(list(enumerate('m'*8)) + list(enumerate('p'*6)), 5))
+outcomes = list(combinations(list(enumerate('m'*8)) + list(enumerate('p'*6)), 5))
 len(outcomes)
 ```
 
